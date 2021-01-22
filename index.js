@@ -4451,7 +4451,7 @@ bot.on('text', (msg) => {
 			break;
 		//Comandos de soporte
 		case '/backup_rm':
-			bot.sendMessage(user_id, '/backup');
+			bot.sendMessage(user_id, 'https://bot-inge.herokuapp.com/backup');
 			break;
 
 		case '/cbackup_rm':
@@ -4469,7 +4469,7 @@ bot.on('text', (msg) => {
 			bot.sendMessage(
 				user_id,
 				`
-				test de mensaje5
+				test de mensaje6
 				`
 			);
 			break;
