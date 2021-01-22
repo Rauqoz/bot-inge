@@ -1,0 +1,24 @@
+{
+	"name": "bot-inge",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Rauqoz/bot-inge.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Rauqoz/bot-inge/issues"
+	},
+	"homepage": "https://github.com/Rauqoz/bot-inge#readme",
+	"dependencies": {
+		"express": "^4.17.1",
+		"node-telegram-bot-api": "^0.51.0"
+	}
+}
