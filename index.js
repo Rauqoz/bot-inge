@@ -1,20 +1,19 @@
-//Importamos Express tras instalarlo vía NPM
+//Importaciones
 var express = require('express');
 const Telegram = require('node-telegram-bot-api');
 const token = '1509790910:AAG8OeiLDgRvT_XuJ8V43ajoe5e0m34qEgg';
-const bot = new Telegram(token, { polling: true });
+const tokenBetas = '1589713084:AAGGTRjGxXZckZ_J81medeHeXkvOAtXXmjY';
+const bot = new Telegram(tokenBetas, { polling: true });
 const fs = require('fs');
 
-// Definimos App como la función del módulo Express
+// Server
 var App = express();
-
-// Definimos algunas variables que usaremos en las distintas funciones
 var port = process.env.PORT || 3000;
 var options = {
 	root: __dirname
 };
 
-// Definimos funciones para luego usarlas al recibir una petición en el router
+// Pagina plantilla del servicio
 function getHTML(req, res) {
 	res.sendFile('./index.html', options, (err) => {
 		if (err) throw err;
@@ -22,7 +21,7 @@ function getHTML(req, res) {
 	});
 }
 
-// Definimos las rutas
+// Rutas y Backup
 App.get('/', getHTML);
 
 App.get('/backup', function(req, res) {
@@ -34,6 +33,7 @@ App.get('/backup', function(req, res) {
 	res.end();
 });
 
+//Data Interna
 let pre_data_cursos;
 let data_cursos;
 let post_data_cursos;
@@ -57,6 +57,7 @@ setTimeout(() => {
 	cargar();
 }, 0);
 
+//Inicio del bot ************
 bot.on('text', (msg) => {
 	let user_id = msg.from.id;
 	let user_nick = msg.from.first_name;
@@ -4465,11 +4466,21 @@ bot.on('text', (msg) => {
 			data_cursos = JSON.parse(pre_data_cursos);
 			bot.sendMessage(user_id, 'Plantilla Cargada');
 			break;
+		case '/dardebaja':
+			bot.sendMessage(
+				user_id,
+				`Gracias, vuelva pronto
+			
+			(porfavor eliminar inmediatamente este chat, no responda a este mensaje)`
+			);
+			data_usuarios.splice(data_usuarios.indexOf(user_actual), 1);
+
+			break;
 		case '/test':
 			bot.sendMessage(
 				user_id,
 				`
-				test de mensaje6
+				test update 7
 				`
 			);
 			break;
@@ -4477,7 +4488,7 @@ bot.on('text', (msg) => {
 		case '/about':
 			bot.sendMessage(
 				user_id,
-				`
+				`***
 				Aqui no sabia que poner... so... talvez un easterEgg! okno jajaja.
 	
 				-Rauqoz
@@ -4485,6 +4496,11 @@ bot.on('text', (msg) => {
 				Este mensaje no esta soportado por telegram jajaja.
 
 				-Maoz
+
+
+				* Cuando ya no quieras recibir mensajes de este bot (desuscribirse) porfavor utilizar el comando /dardebaja , seguido de eso borrar el chat con el bot
+
+				* Si se dio de baja y quiere volver a usar el bot, nuevamente utilizar el comando /start
 				
 				*Este bot esta creado sin fines de lucro*
 				`
@@ -4571,6 +4587,21 @@ bot.on('text', (msg) => {
 					bot.sendMessage(user_id, 'Escoge un Curso Primero :( ');
 					limpiar();
 				}
+			} else if (msg.text.match(/\/dif/i)) {
+				let anuncio = `
+				*** Seccion de Anuncios ***
+			
+				${msg.text.substring(4)}
+				
+
+				(No quieres mas mensajes de este bot? revisa /about)
+				-Rauqoz`;
+
+				data_usuarios.forEach((e) => {
+					if (e.id != 0) {
+						bot.sendMessage(e.id, anuncio);
+					}
+				});
 			} else {
 				bot.sendMessage(user_id, 'Tienes Problemas? utiliza /help');
 				limpiar();
@@ -4579,9 +4610,9 @@ bot.on('text', (msg) => {
 	}
 });
 
-// Escuchamos el puerto de Express
+// Server on
 App.listen(port, function() {
-	console.log('Aplicacion escuchando en el puerto: ' + port);
+	console.log('Rauqoz ' + port);
 });
 
 /* Descripcion Edit Commands
