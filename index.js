@@ -3,7 +3,7 @@ var express = require('express');
 const Telegram = require('node-telegram-bot-api');
 const token = '1509790910:AAG8OeiLDgRvT_XuJ8V43ajoe5e0m34qEgg';
 const tokenBetas = '1589713084:AAGGTRjGxXZckZ_J81medeHeXkvOAtXXmjY';
-const bot = new Telegram(tokenBetas, { polling: true });
+const bot = new Telegram(token, { polling: true });
 const fs = require('fs');
 
 // Server
