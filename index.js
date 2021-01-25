@@ -147,6 +147,8 @@ bot.on('text', (msg) => {
 
 		Comienza haciendo clic en -> /help
 
+		Preguntas Frecuentes en -> /dudas
+
 			-Rauqoz
 			-Maoz
 			`
@@ -4476,11 +4478,63 @@ bot.on('text', (msg) => {
 			data_usuarios.splice(data_usuarios.indexOf(user_actual), 1);
 
 			break;
+		case '/dudas':
+			bot.sendMessage(
+				user_id,
+				`
+				1) Como agrego los links de los cursos que estoy llevando?
+
+				Para agregar un link de meet utiliza el comando /addlink, seguido de esto selecciona el curso, luego saldra el listado de secciones (basado en el horario general) y por ultimo copia y pega el enlace de meet (unicamente el link de meet)
+
+				2) Como veo el link de algun curso?
+
+				Para ver los links de meet utiliza el comando /meet, seguido de esto selecciona el curso, luego saldra un listado de secciones (ojo, a diferencia de addlink apareceran Unicamente las secciones que SI posean link guardado, sino sale ninguna seccion significa que aun no hay link para esa seccion)
+
+				3) Agrege un link en la seccion incorrecta, que hago?
+
+				Por el momento la gestion es por medio del bot, no hay inconveniente en que te confundas, unicamente vuelve a seleccionar el curso y la seccion en donde te confundiste y esta vez agrega este meet vacio meet.google.com para que se entienda que hubo una confusion, yo borrare los vacios poco a poco en siguientes actualizaciones
+
+				4) Estan todos los links?
+
+				No, por obvias razones lastimosamente no poseo los links de todos los cursos y secciones existentes, asi que poco a poco entre todos debemos darnos a la tarea de recopilarlos
+
+				5) Agregaran laboratorios?
+
+				Posiblemente, pero depende del progreso que tengamos actualmente con cursos
+
+				(Si tienes alguna otra duda puedes enviarla a mi correo, informacion en /help)
+				`
+			);
+			break;
+		case '/count':
+			let count_users = 0,
+				count_cursos = 0;
+
+			data_usuarios.forEach((e) => {
+				if (e.id != 0) {
+					count_users += 1;
+				}
+			});
+
+			data_cursos.forEach((e) => {
+				e.mas.forEach((y) => {
+					if (y.link.length != 0) {
+						count_cursos += 1;
+					}
+				});
+			});
+			bot.sendMessage(
+				user_id,
+				`
+				Actualmente ${count_users} usuarios Activos y ${count_cursos} links agregados
+				`
+			);
+			break;
 		case '/test':
 			bot.sendMessage(
 				user_id,
 				`
-				test update 7
+				test update 8
 				`
 			);
 			break;
@@ -4620,5 +4674,6 @@ start - Iniciar el Bot
 addlink - Agregar el Meet para un curso 
 meet - Ver el Meet de un curso (si existe)
 help - Ayuda y un par de especificaciones
+dudas - Preguntas Frecuentes
 about - about?
 */
