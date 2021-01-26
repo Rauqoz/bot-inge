@@ -32,25 +32,29 @@ App.get('/backup', function(req, res) {
 	res.write(post_data_cursos);
 	res.end();
 });
+App.get('/backup2', function(req, res) {
+	post_data_usuarios = JSON.stringify(data_usuarios);
+	res.setHeader('Content-disposition', 'attachment; filename=users.json');
+	res.setHeader('Content-type', 'text/plain');
+	res.charset = 'UTF-8';
+	res.write(post_data_usuarios);
+	res.end();
+});
 
 //Data Interna
 let pre_data_cursos;
 let data_cursos;
 let post_data_cursos;
 
-let data_usuarios = [
-	{
-		id: 0,
-		code: '',
-		section: '',
-		l_meets: 1,
-		l_add: 1
-	}
-];
+let pre_data_usuarios;
+let data_usuarios;
+let post_data_usuarios;
 
 const cargar = () => {
 	pre_data_cursos = fs.readFileSync('links.json');
 	data_cursos = JSON.parse(pre_data_cursos);
+	pre_data_usuarios = fs.readFileSync('users.json');
+	data_usuarios = JSON.parse(pre_data_usuarios);
 };
 
 setTimeout(() => {
@@ -4455,6 +4459,7 @@ bot.on('text', (msg) => {
 		//Comandos de soporte
 		case '/backup_rm':
 			bot.sendMessage(user_id, 'https://bot-inge.herokuapp.com/backup');
+			bot.sendMessage(user_id, 'https://bot-inge.herokuapp.com/backup2');
 			break;
 
 		case '/cbackup_rm':
@@ -4534,7 +4539,7 @@ bot.on('text', (msg) => {
 			bot.sendMessage(
 				user_id,
 				`
-				test update 9
+				test update 10
 				`
 			);
 			break;
