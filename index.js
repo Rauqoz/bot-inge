@@ -149,9 +149,7 @@ bot.on('text', (msg) => {
 				user_id,
 				`Bot basico dedicado a Recopilar Meets para los cursos de Ingenieria Usac
 
-		Comienza haciendo clic en -> /help
-
-		Preguntas Frecuentes en -> /dudas
+		Nueva Seccion -> /help
 
 			-Rauqoz
 			-Maoz
@@ -4539,7 +4537,19 @@ bot.on('text', (msg) => {
 			bot.sendMessage(
 				user_id,
 				`
-				test update 11
+				test update 12
+				`
+			);
+			break;
+		case '/correos':
+			bot.sendMessage(
+				user_id,
+				`
+				Correos de contacto de administrativos:
+
+				controlacademico@ing.usac.edu.gt
+				centrodecalculo@ing.usac.edu.gt
+				juntadirectiva@ing.usac.edu.gt
 				`
 			);
 			break;
@@ -4577,12 +4587,12 @@ bot.on('text', (msg) => {
 				* La abreviacion "DIPLO" la veras en cursos que son DIPLOMADOS.
 			
 				* Todos los cursos estan ordenados Alfabeticamente.
-				
-				* Si deseas agregar un link (unicamente de meet) de algun curso que tengas conocimiento, puedes hacerlo utilizando /addlink .
 			
-				* Si deseas ver el link (unicamente de meet), si estubiera agregado, puedes consultar utilizando /meet .
-			
-				* Si tienes alguna duda puedes enviar un correo a raul4.antonio@yahoo.com con el asunto [Bot_Ingenieria], con gusto lo revisare.
+				* Si tienes alguna duda puedes enviar un correo a raul4.antonio@yahoo.com con el asunto [Bot_Ingenieria] , con gusto lo revisare.
+
+				* Preguntas Frecuentes -> /dudas
+
+				* Conctactos Administrativos -> /correos
 			
 				`
 			);
